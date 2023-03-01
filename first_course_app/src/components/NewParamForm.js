@@ -22,7 +22,8 @@ function NewParamForm(props){
                            type="text" 
                            required
                            value={assigned}
-                           onChange={e => setAssigned(e.target.value)}></input>
+                           onChange={e => setAssigned(e.target.value)}>
+                    </input>
                 </div>
                 <div className="mb-3">
                     <label className="form-label">Description</label>
@@ -32,7 +33,9 @@ function NewParamForm(props){
                               value={description}
                               onChange={e => setDescription(e.target.value)}></textarea>
                 </div>
-                <button className="btn btn-primary mt-3" onClick={submitParams}>Add Param</button>
+                <button className="btn btn-primary mt-3" onClick={submitParams}>
+                    Add Param
+                </button>
             </form>
         </div>
     )

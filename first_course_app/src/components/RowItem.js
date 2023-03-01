@@ -1,6 +1,6 @@
 function RowItem(props){
     return(
-    <tr>
+    <tr onClick={()=>props.deleteParam(props.rowNum)}>
         <th scope="row">{props.rowNum}</th>
         <td>{props.rowDesc}</td>
         <td>{props.rowAssign}</td>

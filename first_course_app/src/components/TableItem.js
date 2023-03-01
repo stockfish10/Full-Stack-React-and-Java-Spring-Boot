@@ -14,9 +14,11 @@ function TableItem(props){
 
             {props.myParams.map(myParam => (
                 <RowItem
+                key={myParam.rowNum}
                 rowNum={myParam.rowNum}
                 rowDesc={myParam.rowDesc}
-                rowAssign={myParam.rowAssign}/>
+                rowAssign={myParam.rowAssign}
+                deleteParam={props.deleteParam}/>
             ))}
 
         </tbody>
