@@ -1,0 +1,29 @@
+var Student = /** @class */ (function () {
+    function Student(theFirst, theLast) {
+        this._firstName = theFirst;
+        this._lastName = theLast;
+    }
+    Object.defineProperty(Student.prototype, "firstName", {
+        get: function () {
+            return this._firstName;
+        },
+        set: function (v) {
+            this._firstName = v;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    Object.defineProperty(Student.prototype, "lastName", {
+        get: function () {
+            return this._lastName;
+        },
+        set: function (v) {
+            this._lastName = v;
+        },
+        enumerable: false,
+        configurable: true
+    });
+    return Student;
+}());
+var myStudent = new Student("FirstName", "LastName");
+console.log(myStudent.firstName + " " + myStudent.lastName);
