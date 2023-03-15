@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function NewParamForm(props){
+export const NewParamForm: React.FC<{addParam: Function}> = (props) => {
 
     const [assigned, setAssigned] = useState('');
     const [description, setDescription] = useState('');
@@ -40,5 +40,3 @@ function NewParamForm(props){
         </div>
     )
 }
-
-export default NewParamForm;

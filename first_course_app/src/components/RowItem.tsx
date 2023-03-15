@@ -1,4 +1,11 @@
-function RowItem(props){
+import React from "react"
+
+export const RowItem: React.FC<{
+    rowNum: number, 
+    rowDesc: string, 
+    rowAssign: string, 
+    deleteParam: Function
+}> = (props) => {
     return(
     <tr onClick={()=>props.deleteParam(props.rowNum)}>
         <th scope="row">{props.rowNum}</th>
@@ -7,5 +14,3 @@ function RowItem(props){
     </tr>
     )
 }
-
-export default RowItem

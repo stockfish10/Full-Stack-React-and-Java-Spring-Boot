@@ -1,6 +1,7 @@
-import RowItem from "./RowItem.js"
+import React from "react"
+import { RowItem } from "./RowItem"
 
-function TableItem(props){
+export const TableItem: React.FC<{myParams: MyModel[], deleteParam: Function}> = (props) => {
     return(
         <table className="table table-hover">
         <thead>
@@ -25,5 +26,3 @@ function TableItem(props){
       </table>
     )
 }
-
-export default TableItem

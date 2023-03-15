@@ -1,9 +1,9 @@
 import './App.css';
-import TableItem from './components/TableItem.js';
-import NewParamForm from './components/NewParamForm.js';
+import { TableItem } from './components/TableItem';
+import { NewParamForm } from './components/NewParamForm';
 import React, { useState } from 'react';
 
-function App() {
+export const App = () => {
 
   const [showAddForm, setShowAddForm] = useState(false);
 
@@ -14,7 +14,7 @@ function App() {
     {rowNum: 4, rowDesc: "Make smt", rowAssign: "Josh"}
   ])
 
-  const addParam = (description, assigned) => {
+  const addParam = (description: string, assigned: string) => {
 
     let rowNum = 0;
 
@@ -32,7 +32,7 @@ function App() {
     
   }
 
-  const deleteParam = (deleteRowNumber) => {
+  const deleteParam = (deleteRowNumber: number) => {
     let filtered = myParams.filter(function(value){
       return value.rowNum !== deleteRowNumber;
     });
@@ -59,5 +59,3 @@ function App() {
     </div>
   );
 }
-
-export default App;
