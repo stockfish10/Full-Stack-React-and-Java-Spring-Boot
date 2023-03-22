@@ -2,12 +2,11 @@ package com.luv2code.springbootlibrary.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import org.springframework.boot.autoconfigure.web.WebProperties;
 
 @Entity
 @Table(name = "book")
 @Data
-public class Book {
+public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
