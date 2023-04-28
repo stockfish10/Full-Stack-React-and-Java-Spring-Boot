@@ -19,7 +19,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @PutMapping("/secure/checkout")
+    @PutMapping("/secure/bookCheckoutEntities")
     public BookEntity checkoutBook(@RequestParam Long bookId) throws Exception {
         String userEmail = "testuser@email.com";
 
