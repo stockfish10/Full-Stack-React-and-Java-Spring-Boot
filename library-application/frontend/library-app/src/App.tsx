@@ -25,6 +25,7 @@ export const App = () => {
     history.replace(toRelativeUrl(originalUri || '/', window.location.origin));
   }
 
+
   return (
     <div className='d-flex flex-column min-vh-100'>
       <Security oktaAuth={oktaAuth} restoreOriginalUri={restoreOriginalUri} onAuthRequired={customAuthHandler}>

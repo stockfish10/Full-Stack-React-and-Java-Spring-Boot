@@ -28,14 +28,14 @@ public class BookController {
     }
 
     @GetMapping("/secure/ischeckedout/byuser")
-    public Boolean checkoutBookByUser(@RequestParam Long bookId,@RequestHeader(value = "Authorization") String token) {
+    public Boolean checkoutBookByUser(@RequestHeader(value = "Authorization") String token, @RequestParam Long bookId) {
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
 
         return bookService.checkoutBookByUser(userEmail, bookId);
     }
 
     @PutMapping("/secure/bookCheckoutEntities")
-    public BookEntity checkoutBook(@RequestParam Long bookId,@RequestHeader(value = "Authorization") String token) throws Exception {
+    public BookEntity checkoutBook(@RequestHeader(value = "Authorization") String token, @RequestParam Long bookId) throws Exception {
         String userEmail = ExtractJWT.payloadJWTExtraction(token, "\"sub\"");
 
         return bookService.checkoutBook(userEmail,bookId);

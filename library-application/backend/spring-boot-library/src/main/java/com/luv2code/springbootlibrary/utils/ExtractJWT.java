@@ -9,9 +9,9 @@ public class ExtractJWT {
 
     public static String payloadJWTExtraction(String token, String extraction) {
 
-        token.replace("Bearer ", "");
+        String my_token = token.replace("Bearer ", "");
 
-        String[] chunks = token.split("\\.");
+        String[] chunks = my_token.split("\\.");
         Base64.Decoder decoder = Base64.getUrlDecoder();
 
         String payload = new String(decoder.decode(chunks[1]));
