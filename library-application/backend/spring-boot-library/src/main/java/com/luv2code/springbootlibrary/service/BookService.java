@@ -5,6 +5,7 @@ import com.luv2code.springbootlibrary.entity.BookEntity;
 import com.luv2code.springbootlibrary.repository.BookCheckoutRepository;
 import com.luv2code.springbootlibrary.repository.BookRepository;
 import com.luv2code.springbootlibrary.responsemodels.ShelfCurrentLoansResponse;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -108,6 +109,27 @@ public class BookService {
         bookRepository.save(book.get());
 
         bookCheckoutRepository.deleteById(validateCheckout.getId());
+    }
+
+    public void renewLoan(String userEmail, Long bookId) throws Exception {
+
+        BookCheckoutEntity validateCheckout = bookCheckoutRepository.findByUserEmailAndBookId(userEmail,bookId);
+
+        if (validateCheckout == null) {
+            throw new Exception("Book does not exist or not checked out by user!");
+        }
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+        Date d1 = sdf.parse(validateCheckout.getReturnDate());
+        Date d2 = sdf.parse(LocalDate.now().toString());
+
+        if (d1.compareTo(d2) > 0 || d1.compareTo(d2) == 0) {
+            validateCheckout.setReturnDate(LocalDate.now().plusDays(7).toString());
+        }
+
+        bookCheckoutRepository.save(validateCheckout);
+
     }
 
 
