@@ -59,5 +59,5 @@ export const HistoryPage = () => {
 
     const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
     
-    return();
+    return(<div></div>);
 }
