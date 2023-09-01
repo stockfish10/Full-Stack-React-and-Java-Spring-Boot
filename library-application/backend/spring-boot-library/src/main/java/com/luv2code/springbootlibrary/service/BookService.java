@@ -2,8 +2,10 @@ package com.luv2code.springbootlibrary.service;
 
 import com.luv2code.springbootlibrary.entity.BookCheckoutEntity;
 import com.luv2code.springbootlibrary.entity.BookEntity;
+import com.luv2code.springbootlibrary.entity.History;
 import com.luv2code.springbootlibrary.repository.BookCheckoutRepository;
 import com.luv2code.springbootlibrary.repository.BookRepository;
+import com.luv2code.springbootlibrary.repository.HistoryRepository;
 import com.luv2code.springbootlibrary.responsemodels.ShelfCurrentLoansResponse;
 import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
@@ -24,9 +26,12 @@ public class BookService {
     private BookRepository bookRepository;
     private BookCheckoutRepository bookCheckoutRepository;
 
-    public BookService(BookRepository bookRepository, BookCheckoutRepository bookCheckoutRepository) {
+    private HistoryRepository historyRepository;
+
+    public BookService(BookRepository bookRepository, BookCheckoutRepository bookCheckoutRepository, HistoryRepository historyRepository) {
         this.bookRepository = bookRepository;
         this.bookCheckoutRepository = bookCheckoutRepository;
+        this.historyRepository = historyRepository;
     }
 
     public BookEntity checkoutBook(String userEmail, Long bookId) throws Exception {
@@ -107,8 +112,19 @@ public class BookService {
         book.get().setCopiesAvailable(book.get().getCopiesAvailable() + 1);
 
         bookRepository.save(book.get());
-
         bookCheckoutRepository.deleteById(validateCheckout.getId());
+
+        History history = new History(
+                userEmail,
+                validateCheckout.getCheckoutDate(),
+                LocalDate.now().toString(),
+                book.get().getTitle(),
+                book.get().getAuthor(),
+                book.get().getDescription(),
+                book.get().getImg()
+        );
+
+        historyRepository.save(history);
     }
 
     public void renewLoan(String userEmail, Long bookId) throws Exception {
