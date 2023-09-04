@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { PostNewMessage } from "./components/PostNewMessage";
+import { Messages } from "./components/Messages";
 
 export const MessagesPage = () => {
 
@@ -24,11 +26,11 @@ export const MessagesPage = () => {
                 <div className="tab-content" id="nav-tabContent">
                     <div className="tab-pane fade show active" id="nav-send-message" role="tabpanel"
                     aria-labelledby="nav-send-message-tab">
-                        <p>Post new message</p>
+                        <PostNewMessage/>
                     </div>
                     <div className="tab-pane fade" id="nav-message" role="tabpanel"
-                    aria-aria-labelledby="nav-message-tab">
-                        {messagesClick ? <p>Messages</p> : <></>}
+                    aria-labelledby="nav-message-tab">
+                        {messagesClick ? <Messages/> : <></>}
                     </div>
                 </div>
             </div>
