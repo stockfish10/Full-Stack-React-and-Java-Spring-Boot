@@ -18,7 +18,7 @@ public class History {
         this.title = title;
         this.author = author;
         this.description = description;
-        this.image = image;
+        this.img = image;
     }
 
     @Id
@@ -32,7 +32,7 @@ public class History {
     @Column(name = "checkout_date")
     private String checkoutDate;
 
-    @Column(name = "return_date")
+    @Column(name = "returned_date")
     private String returnDate;
 
     @Column(name = "title")
@@ -44,6 +44,6 @@ public class History {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "image")
-    private String image;
+    @Column(name = "img")
+    private String img;
 }
