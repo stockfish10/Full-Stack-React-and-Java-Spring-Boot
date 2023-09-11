@@ -21,7 +21,8 @@ public class SecurityConfiguration {
         http.authorizeHttpRequests(configurer ->
                         configurer.requestMatchers("/api/bookEntities/secure/**",
                                         "/api/reviewEntities/secure/**",
-                                        "/api/messages/secure/**")
+                                        "/api/messages/secure/**",
+                                        "/api/admin/secure/**")
                                 .authenticated()
                                 .anyRequest().permitAll())
                 .oauth2ResourceServer()
