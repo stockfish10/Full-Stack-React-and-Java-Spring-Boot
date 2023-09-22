@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import BookModel from "../../../models/BookModel";
 import { SpinnerLoading } from "../../Utils/SpinnerLoading";
 import { Pagination } from "../../Utils/Pagination";
+import { ChangeQuantityOfBook } from "./ChangeQuantityOfBook";
 
 export const ChangeQuantityOfBooks = () => {
 
@@ -12,6 +13,7 @@ export const ChangeQuantityOfBooks = () => {
     const [booksPerPage] = useState(5);
     const [totalAmountOfBooks, setTotalAmountOfBooks] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+    const [bookDelete, setBookDelete] = useState(false);
 
     useEffect(() => {
         const fetchBooks = async () => {
@@ -52,7 +54,7 @@ export const ChangeQuantityOfBooks = () => {
             setIsLoading(false);
             setHttpError(error.message);
         })
-    }, [currPage]);
+    }, [currPage, bookDelete]);
 
     if (isLoading) {
         return (
@@ -77,6 +79,8 @@ export const ChangeQuantityOfBooks = () => {
 
     const paginate = (pageNumber: number) => setCurrPage(pageNumber);
 
+    const deleteBook = () => setBookDelete(!bookDelete);
+
     return(
         <div className="container mt-5">
             {totalAmountOfBooks >0 ?
@@ -88,7 +92,7 @@ export const ChangeQuantityOfBooks = () => {
                         {indexOfFirstBook + 1} to {lastItem} of {totalAmountOfBooks} items:
                     </p>
                     {books.map(book => (
-                        <p>Display different quantity of books</p>
+                        <ChangeQuantityOfBook book={book} key={book.id} deleteBook={deleteBook}/>
                     ))}
                 </>
                 :
